@@ -8,4 +8,5 @@ public class SimEspeciales implements Serializable
 	public static char EPSILON = (char)5;
 	public static char FIN = (char)0;
 	public static int TOKENERROR = 9999;
+        public static int OMITIR = 20000;
 }
