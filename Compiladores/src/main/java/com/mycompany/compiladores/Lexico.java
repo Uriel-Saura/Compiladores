@@ -76,9 +76,7 @@ public class Lexico {
         Pila.clear();
         //AutomataFD.AutFD;
     }
-  
-     /*
-     
+   
      public ClassEstadoAnalizLexico GetEdoActualLexico(){
          ClassEstadoAnalizLexico EdoActualAnaliz = new ClassEstadoAnalizLexico();
          EdoActualAnaliz.CaracterActual = CaracterActual;
@@ -109,8 +107,6 @@ public class Lexico {
          return true;
      } 
      
-     */
-
      public void SetSigma(String sigma)
      {
          CadenaSigma = sigma;
@@ -179,7 +175,7 @@ public class Lexico {
 
      public boolean UndoToken()
      {
-         if(Pila.capacity() == 0)
+         if(Pila.empty())
              return false;
          IndiceCaracterActual = Pila.pop();
          return true;
