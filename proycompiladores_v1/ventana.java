@@ -8,14 +8,15 @@ import javax.swing.*;
 
 public class ventana extends JFrame
 {
+    private Scanner in = new Scanner(System.in);
     private Map<String, AFN> listaAutomatas = new HashMap<String, AFN>();
-    
+    private Map<String, AFN> especiales = new HashMap<String, AFN>();
+    analizador analizador = new analizador();
+
     JPanel panel1 = new JPanel(); //Izq
     JPanel panel2 = new JPanel(); //Der
     JPanel panel3 = new JPanel(); //Arriba
-    
-    analizador analizador = new analizador();
-    
+      
     public ventana()
     {
         setSize(1300,800);
@@ -42,6 +43,11 @@ public class ventana extends JFrame
         button3.setFocusPainted(false);
         button3.setMargin(new Insets(0, 0, 0, 0));        
         button3.setBorderPainted(false);
+        
+        JButton button4 = new JButton("Unir para AFN especial");
+        button4.setFocusPainted(false);
+        button4.setMargin(new Insets(0, 0, 0, 0));        
+        button4.setBorderPainted(false);
         
         JButton buttonEXIT = new JButton("Salir");
         buttonEXIT.setFocusPainted(false);
@@ -73,7 +79,8 @@ public class ventana extends JFrame
         
         button1.setBounds(0,200,261,50);      
         button2.setBounds(0,260,261,50);              
-        button3.setBounds(0,320,261,50); 
+        button3.setBounds(0,320,261,50);
+        button4.setBounds(0,380,261,50);
         buttonEXIT.setBounds(0, 550, 261, 50);    
         
         label1.setBounds(20,10,210,50);      
@@ -85,6 +92,7 @@ public class ventana extends JFrame
         panel1.add(button1);
         panel1.add(button2);
         panel1.add(button3);
+        panel1.add(button4);
         panel1.add(buttonEXIT);        
         
         panel2.add(areaTexto);
@@ -115,6 +123,11 @@ public class ventana extends JFrame
                     areaTexto.append("\n"+palabra);                    
                 }
                 
+                if(btn1.getText() == "Unir para AFN especial")
+                {                    
+                    analizador.menu(4);
+                }
+                
                 if(btn1.getText() == "Salir")
                 {
                     System.exit(0);
@@ -125,6 +138,7 @@ public class ventana extends JFrame
         button1.addActionListener(listener);
         button2.addActionListener(listener);
         button3.addActionListener(listener);
+        button4.addActionListener(listener);
         buttonEXIT.addActionListener(listener);        
         
         this.getContentPane().add(panel1);
