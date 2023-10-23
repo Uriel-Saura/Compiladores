@@ -140,7 +140,7 @@ public class Lexico {
              token = -1;
              while (IndiceCaracterActual < CadenaSigma.length())
              {
-                 //CaracterActual = CadenaSigma(IndiceCaracterActual);
+                 CaracterActual = CadenaSigma.charAt(IndiceCaracterActual);
                  //EdoTransicion = AutomataFD.TablaFD(EdoActual, CaracterActual);
                  if(EdoTransicion != -1) 
                  {
@@ -166,8 +166,11 @@ public class Lexico {
              // No hay transicon con el caracter actual, pero ya se habia pasado por edo de aceptacion
              Lexema = CadenaSigma.substring(IniLexema, FinLexema - IniLexema + 1);
              IndiceCaracterActual = FinLexema + 1;
-             if(token == SimEspeciales.OMITIR) {
-             } else
+             if(token == SimEspeciales.OMITIR) 
+             {
+                 continue;
+             } 
+             else
                  return token;
          }  
         

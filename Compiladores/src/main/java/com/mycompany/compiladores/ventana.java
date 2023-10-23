@@ -4,21 +4,17 @@ package com.mycompany.compiladores;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
 import javax.swing.*;
 
 public class ventana extends JFrame
 {
-    private Map<String, AFN> listaAutomatas = new HashMap<String, AFN>();
-    
+
+    analizador analizador = new analizador();
+
     JPanel panel1 = new JPanel(); //Izq
     JPanel panel2 = new JPanel(); //Der
     JPanel panel3 = new JPanel(); //Arriba
-    
-    analizador analizador = new analizador();
-    
+      
     public ventana()
     {
         setSize(1300,800);
@@ -45,6 +41,21 @@ public class ventana extends JFrame
         button3.setFocusPainted(false);
         button3.setMargin(new Insets(0, 0, 0, 0));        
         button3.setBorderPainted(false);
+        
+        JButton button4 = new JButton("Unir para AFN especial");
+        button4.setFocusPainted(false);
+        button4.setMargin(new Insets(0, 0, 0, 0));        
+        button4.setBorderPainted(false);
+        
+        JButton button5 = new JButton("Analizar Cadena");
+        button5.setFocusPainted(false);
+        button5.setMargin(new Insets(0, 0, 0, 0));        
+        button5.setBorderPainted(false);
+        
+        JButton buttonConversion = new JButton("Convertir AFN a AFD");
+        buttonConversion.setFocusPainted(false);
+        buttonConversion.setMargin(new Insets(0, 0, 0, 0));        
+        buttonConversion.setBorderPainted(false);
         
         JButton buttonEXIT = new JButton("Salir");
         buttonEXIT.setFocusPainted(false);
@@ -76,8 +87,11 @@ public class ventana extends JFrame
         
         button1.setBounds(0,200,261,50);      
         button2.setBounds(0,260,261,50);              
-        button3.setBounds(0,320,261,50); 
-        buttonEXIT.setBounds(0, 550, 261, 50);    
+        button3.setBounds(0,320,261,50);
+        button4.setBounds(0,380,261,50);
+        buttonConversion.setBounds(0, 440, 261, 50);
+        button5.setBounds(0,500,261,50);
+        buttonEXIT.setBounds(0, 560, 261, 50);    
         
         label1.setBounds(20,10,210,50);      
         label2.setBounds(301,10,800,35);            
@@ -88,6 +102,9 @@ public class ventana extends JFrame
         panel1.add(button1);
         panel1.add(button2);
         panel1.add(button3);
+        panel1.add(button4);
+        panel1.add(button5);
+        panel1.add(buttonConversion);
         panel1.add(buttonEXIT);        
         
         panel2.add(areaTexto);
@@ -118,9 +135,25 @@ public class ventana extends JFrame
                     areaTexto.append("\n"+palabra);                    
                 }
                 
+                if(btn1.getText() == "Unir para AFN especial")
+                {                    
+                    analizador.menu(4);
+                }
+                
                 if(btn1.getText() == "Salir")
                 {
                     System.exit(0);
+                }
+                
+                if ("Analizar Cadena".equals(btn1.getText())) 
+                {
+                   VentanaAnalizLexico window = new VentanaAnalizLexico();
+                   window.setVisible(true);
+                }
+                
+                if ("Convertir AFN a AFD".equals(btn1.getText())) 
+                {
+                    System.out.println("Boton de conversion ");
                 }
             }
         };
@@ -128,6 +161,9 @@ public class ventana extends JFrame
         button1.addActionListener(listener);
         button2.addActionListener(listener);
         button3.addActionListener(listener);
+        button4.addActionListener(listener);
+        button5.addActionListener(listener);
+        buttonConversion.addActionListener(listener);
         buttonEXIT.addActionListener(listener);        
         
         this.getContentPane().add(panel1);

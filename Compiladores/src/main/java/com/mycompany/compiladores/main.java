@@ -8,7 +8,9 @@ public class main
 {
     public static void main(String args[])
     {            
-        ventana v1 = new ventana();                
-        v1.setVisible(true);      
+        //ventana v1 = new ventana();                
+        //v1.setVisible(true);
+        VentanaAnalizLexico v2 = new VentanaAnalizLexico();
+        v2.setVisible(true);
     }	
 }
